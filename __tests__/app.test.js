@@ -2,7 +2,6 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
-const agent = request(app);
 
 jest.mock('../lib/utils/github');
 
@@ -24,6 +23,7 @@ describe('backend-gitty routes', () => {
   });
 
   it('Should redirect users to dashboard after login', async () => {
+    const agent = request.agent(app);
     const res = await agent
       .get('/api/v1/github/login/callback?code=42')
       .redirects(1);
@@ -32,7 +32,7 @@ describe('backend-gitty routes', () => {
       id: expect.any(String),
       username: 'fake_github_user',
       email: 'not-real@example.com',
-      avatar: expect.any(String),
+      avatar: null,
       iat: expect.any(Number),
       exp: expect.any(Number),
     });
