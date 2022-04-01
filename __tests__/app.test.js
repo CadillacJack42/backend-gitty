@@ -32,7 +32,7 @@ describe('backend-gitty routes', () => {
       id: expect.any(String),
       username: 'fake_github_user',
       email: 'not-real@example.com',
-      avatar: null,
+      avatar: expect.any(String),
       iat: expect.any(Number),
       exp: expect.any(Number),
     });
