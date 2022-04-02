@@ -13,6 +13,15 @@ describe('backend-gitty posts routes', () => {
   });
 
   it('Should allow an authenticated user to create a new post', async () => {
-    const res = await request(app).get('/api/v1/posts');
+    const newPost = {
+      username: 'cadillacJack42',
+      post: 'This is an awesome post',
+    };
+    const res = await request(app).post('/api/v1/posts').send(newPost);
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      username: 'cadillacJack42',
+      post: 'This is an awesome post',
+    });
   });
 });
