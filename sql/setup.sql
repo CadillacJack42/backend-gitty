@@ -4,7 +4,13 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    username TEXT NOT NULL,
+    username TEXT NOT NULL UNIQUE,
     email TEXT,
     avatar TEXT
 );
+
+CREATE TABLE posts (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    username TEXT NOT NULL REFERENCES users(username),
+    post VARCHAR(255)
+)
