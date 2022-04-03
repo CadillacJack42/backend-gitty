@@ -37,4 +37,15 @@ describe('backend-gitty routes', () => {
       exp: expect.any(Number),
     });
   });
+
+  it('Should remove a users cookie upon sign out', async () => {
+    const agent = request.agent(app);
+
+    await agent.get('/api/v1/github/login/callback?code=42').redirects(1);
+
+    const res = await agent.delete('/api/v1/github');
+
+    expect(res.body).toEqual('user dta sent back');
+    expect(res.status).toEqual(200);
+  });
 });
