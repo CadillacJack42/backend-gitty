@@ -31,5 +31,12 @@ describe('backend-gitty posts routes', () => {
     });
   });
 
-  it('Should display a list of all posts to authenticated users', async () => {});
+  it('Should display a list of all posts to authenticated users', async () => {
+    const agent = request.agent(app);
+
+    await agent.get('/api/v1/github/login/callback?code=42').redirects(1);
+
+    const res = await agent.get('/api/v1/posts');
+    expect(res.body).toEqual([{}]);
+  });
 });
