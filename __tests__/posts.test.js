@@ -37,6 +37,32 @@ describe('backend-gitty posts routes', () => {
     await agent.get('/api/v1/github/login/callback?code=42').redirects(1);
 
     const res = await agent.get('/api/v1/posts');
-    expect(res.body).toEqual([{}]);
+    expect(res.body).toEqual([
+      {
+        id: '1',
+        post: 'Cool Post',
+        username: 'Cool user',
+      },
+      {
+        id: '2',
+        post: 'Cooler Post',
+        username: 'Cooler user',
+      },
+      {
+        id: '3',
+        post: 'Coolest Post',
+        username: 'Coolest user',
+      },
+      {
+        id: '4',
+        post: 'Not Really a Cool Post',
+        username: 'NotSoCool user',
+      },
+      {
+        id: '5',
+        post: 'Uncool Post',
+        username: 'DefNotCool user',
+      },
+    ]);
   });
 });
