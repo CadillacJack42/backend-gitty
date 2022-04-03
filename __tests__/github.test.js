@@ -45,7 +45,10 @@ describe('backend-gitty routes', () => {
 
     const res = await agent.delete('/api/v1/github');
 
-    expect(res.body).toEqual('user dta sent back');
+    expect(res.body).toEqual({
+      success: true,
+      message: 'Signed out Successfully!',
+    });
     expect(res.status).toEqual(200);
   });
 });
