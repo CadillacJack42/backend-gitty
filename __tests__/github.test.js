@@ -52,3 +52,4 @@ describe('backend-gitty routes', () => {
     expect(res.status).toEqual(200);
   });
 });
+// Minor change for push
