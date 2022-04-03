@@ -14,4 +14,10 @@ CREATE TABLE posts (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     username TEXT NOT NULL,
     post VARCHAR(255)
-)
+);
+
+INSERT INTO posts (username, post) VALUES ('Cool user', 'Cool Post') RETURNING *;
+INSERT INTO posts (username, post) VALUES ('Cooler user', 'Cooler Post') RETURNING *;
+INSERT INTO posts (username, post) VALUES ('Coolest user', 'Coolest Post') RETURNING *;
+INSERT INTO posts (username, post) VALUES ('NotSoCool user', 'Not Really a Cool Post') RETURNING *;
+INSERT INTO posts (username, post) VALUES ('DefNotCool user', 'Uncool Post') RETURNING *;

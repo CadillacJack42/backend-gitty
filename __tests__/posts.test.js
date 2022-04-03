@@ -30,4 +30,6 @@ describe('backend-gitty posts routes', () => {
       post: 'This is an awesome post',
     });
   });
+
+  it('Should display a list of all posts to authenticated users', async () => {});
 });
