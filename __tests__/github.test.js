@@ -28,14 +28,15 @@ describe('backend-gitty routes', () => {
       .get('/api/v1/github/login/callback?code=42')
       .redirects(1);
 
-    expect(res.body).toEqual({
-      id: expect.any(String),
-      username: 'fake_github_user',
-      email: 'not-real@example.com',
-      avatar: expect.any(String),
-      iat: expect.any(Number),
-      exp: expect.any(Number),
-    });
+    expect(res.req.path).toMatch('/api/v1/posts');
+
+    expect(res.body).toEqual([
+      { id: '1', post: 'Cool Post', username: 'Cool user' },
+      { id: '2', post: 'Cooler Post', username: 'Cooler user' },
+      { id: '3', post: 'Coolest Post', username: 'Coolest user' },
+      { id: '4', post: 'Not Really a Cool Post', username: 'NotSoCool user' },
+      { id: '5', post: 'Uncool Post', username: 'DefNotCool user' },
+    ]);
   });
 
   it('Should remove a users cookie upon sign out', async () => {
@@ -53,3 +54,14 @@ describe('backend-gitty routes', () => {
   });
 });
 // Minor change for push
+
+// {"header": {"connection": "close",
+//  "content-length": "154",
+//  "content-type": "application/json;
+//  charset=utf-8", "date": "Wed, 06 Apr 2022 19:44:50 GMT",
+//  "etag": "W/\"9a-39ikh22R4T42Snx4HQzWphfTjGI\"", "x-powered-by": "Express"},
+//  "req": {"data": null, "headers": {"accept-encoding": "gzip, deflate"},
+//  "method": "GET",
+//  "url": "http://127.0.0.1:62015/api/v1/github/dashboard"},
+//  "status": 200,
+//  "text": "{\"id\":\"1\",\"username\":\"fake_github_user\",\"email\":\"not-real@example.com\",\"avatar\":\"https://www.placecage.com/gif/300/300\",\"iat\":1649274290,\"exp\":1649360690}"}
