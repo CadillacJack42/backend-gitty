@@ -12,8 +12,8 @@ describe('backend-gitty quotes route', () => {
     pool.end;
   });
 
-  it('Should return an array of quote objects', async () => {
-    const res = await request.get('/api/v1/quotes');
+  it.skip('Should return an array of quote objects', async () => {
+    const res = await request(app).get('/api/v1/quotes');
 
     expect(res.body).toEqual([
       {
