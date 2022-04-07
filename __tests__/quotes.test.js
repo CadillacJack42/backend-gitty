@@ -12,13 +12,21 @@ describe('backend-gitty quotes route', () => {
     pool.end;
   });
 
-  it.skip('Should return an array of quote objects', async () => {
+  it('Should return an array of quote objects', async () => {
     const res = await request(app).get('/api/v1/quotes');
 
     expect(res.body).toEqual([
       {
-        author: 'Aldous Huxley',
-        content: 'Something he said',
+        author: expect.any(String),
+        quote: expect.any(String),
+      },
+      {
+        author: expect.any(String),
+        quote: expect.any(String),
+      },
+      {
+        author: expect.any(String),
+        quote: expect.any(String),
       },
     ]);
   });
