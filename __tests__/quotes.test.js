@@ -13,7 +13,7 @@ describe('backend-gitty quotes route', () => {
   });
 
   it('Should return an array of quote objects', async () => {
-    const res = await request.agent('/api/v1/quotes');
+    const res = await request.get('/api/v1/quotes');
 
     expect(res.body).toEqual([
       {
